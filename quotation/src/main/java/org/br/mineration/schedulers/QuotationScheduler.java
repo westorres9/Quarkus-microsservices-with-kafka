@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @ApplicationScoped
 public class QuotationScheduler {
-    private  static  final Logger logger = LoggerFactory.getLogger(QuotationScheduler.class);
+    private static final Logger logger = LoggerFactory.getLogger(QuotationScheduler.class);
 
     @Inject
     private QuotationService quotationService;
