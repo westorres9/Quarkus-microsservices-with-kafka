@@ -10,6 +10,7 @@ import org.br.mineration.repositories.QuotationRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class OpportunityServiceImpl implements OpportunityService {
 
 
     @Override
+    @Transactional
     public void buildOpportunity(ProposalDTO proposal) {
         List<Quotation> quotations = quotationRepository.findAll().list();
         Collections.reverse(quotations);
@@ -33,7 +35,7 @@ public class OpportunityServiceImpl implements OpportunityService {
         Opportunity opportunity = new Opportunity();
         opportunity.setDate(new Date());
         opportunity.setProposalId(proposal.getProposalId());
-        opportunity.setCustomer(opportunity.getCustomer());
+        opportunity.setCustomer(proposal.getCustomer());
         opportunity.setPriceTonne(proposal.getPriceTonne());
         opportunity.setLastDollarQuotation(quotations.get(0).getCurrencyPrice());
 
@@ -41,6 +43,7 @@ public class OpportunityServiceImpl implements OpportunityService {
     }
 
     @Override
+    @Transactional
     public void saveQuotation(QuotationDTO quotation) {
         Quotation createQuotation = new Quotation();
         createQuotation.setDate(new Date());
@@ -63,4 +66,5 @@ public class OpportunityServiceImpl implements OpportunityService {
 
         return opportunities;
     }
+
 }

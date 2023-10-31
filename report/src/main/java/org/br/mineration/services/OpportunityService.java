@@ -5,6 +5,7 @@ import org.br.mineration.dto.ProposalDTO;
 import org.br.mineration.dto.QuotationDTO;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @ApplicationScoped
@@ -15,4 +16,5 @@ public interface OpportunityService {
     void saveQuotation(QuotationDTO quotation);
 
     List<OpportunityDTO> generateOpportunityData();
+
 }

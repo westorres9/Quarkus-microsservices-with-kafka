@@ -35,10 +35,16 @@ public class ProposalServiceImpl implements ProposalService {
 
     @Override
     @Transactional
-    public void createNewProposal(ProposalDetailsDTO proposalDetailsDTO) {
+    public void createNewProposal(ProposalDetailsDTO dto) {
         try {
             Proposal proposal = new Proposal();
-            copyDtoToEntity(proposal, proposalDetailsDTO);
+            proposal.setId(dto.getProposalId());
+            proposal.setCustomer(dto.getCustomer());
+            proposal.setPriceTonne(new BigDecimal(dto.getPriceTonne().toString()));
+            proposal.setTonnes(dto.getTonnes());
+            proposal.setProposalValidityDays(dto.getProposalValidityDays());
+            proposal.setCountry(dto.getCountry());
+            proposal.setCreatedAt(new Date());
             proposalRepository.persist(proposal);
             kafkaEvent.sendKafkaEvent(new ProposalDTO(proposal));
         }
