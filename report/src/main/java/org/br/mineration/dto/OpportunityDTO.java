@@ -1,0 +1,62 @@
+package org.br.mineration.dto;
+
+import org.br.mineration.entities.Opportunity;
+
+import java.math.BigDecimal;
+
+public class OpportunityDTO {
+
+    private Long proposalId;
+    private String customer;
+    private BigDecimal priceTonne;
+    private BigDecimal lastDollarQuotation;
+
+    public OpportunityDTO(){
+    }
+
+    public OpportunityDTO(Long proposalId, String customer, BigDecimal priceTonne, BigDecimal lastDollarQuotation) {
+        this.proposalId = proposalId;
+        this.customer = customer;
+        this.priceTonne = priceTonne;
+        this.lastDollarQuotation = lastDollarQuotation;
+    }
+
+    public OpportunityDTO(Opportunity opportunity) {
+        this.proposalId = opportunity.getProposalId();
+        this.customer = opportunity.getCustomer();
+        this.priceTonne = opportunity.getPriceTonne();
+        this.lastDollarQuotation = opportunity.getLastDollarQuotation();
+    }
+
+    public Long getProposalId() {
+        return proposalId;
+    }
+
+    public void setProposalId(Long proposalId) {
+        this.proposalId = proposalId;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public BigDecimal getPriceTonne() {
+        return priceTonne;
+    }
+
+    public void setPriceTonne(BigDecimal priceTonne) {
+        this.priceTonne = priceTonne;
+    }
+
+    public BigDecimal getLastDollarQuotation() {
+        return lastDollarQuotation;
+    }
+
+    public void setLastDollarQuotation(BigDecimal lastDollarQuotation) {
+        this.lastDollarQuotation = lastDollarQuotation;
+    }
+}
